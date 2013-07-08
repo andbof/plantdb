@@ -1,0 +1,21 @@
+{% extends "base_template.html" %}
+
+{% block pageheader %}
+    <h1>Generate QR</h1>
+    <hr />
+{% endblock %}
+
+{% block infoboxcontainer %}
+{% endblock %}
+
+{% block pagetext %}
+    <form action="{% url 'generate_qr' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <table>
+                {{ qrform }}
+            </table>
+            <input type="submit" value="Generate" />
+        </div>
+    </form>
+{% endblock %}

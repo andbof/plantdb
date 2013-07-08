@@ -1,0 +1,24 @@
+PlantDB is a plant database for keeping track of all your home-grown stuff
+using the python web framework Django.
+
+Fancy features include family trees, data storage with photos and documents, as
+well as a QR tag system.
+
+The QR codes contain URLs that can be associated to plants and seeds. They are
+generated to a PDF and printed (preferrably printed on stickers) in advance,
+and associated with a plant or seed whenever it is planted or harvested,
+respectively. They can of course also be associated with store-bought plants
+and seeds.
+
+This allows for easy and quick lookup with any smart mobile phone with a QR
+reader app, while still being easy to use and as non-instrusive as possible
+while planting, when you want to keep your dirty hands far away from keyboards
+and touchscreens.
+
+Supported QR sticker sheets are currently A4s with 70x37 mm stickers.
+
+Copyright (C) 2013 Andreas Bofjall <andreas@gazonk.org>
+
+PlantDB comes with ABSOLUTELY NO WARRANTY. This is free software, and you are
+welcome to redistribute it under certain conditions; see the LICENSE file for
+details.

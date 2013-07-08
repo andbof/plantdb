@@ -1,0 +1,13 @@
+This is my preferred way of working with PlantDB.
+
+Every now and then, I go to https://plantdb.domain/generate_qr and print a new
+set of QR codes on stickers.
+
+After I have planted a new plant, I bring forth my trusted smartphone and fire
+up my favourite QR app. I read the QR on the seed bag, then read the new blank
+QR code. A new plant has now been created and the QR code associated with it. I
+affix the QR sticker to a standard plastic plant name stick.
+
+However, sometimes you need to add plants or seeds manually, such as when you
+buy them from somewhere else. I use the standard django admin interface for
+those occations.

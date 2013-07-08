@@ -1,0 +1,99 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+    seed {{ seed }}
+{% endblock %}
+
+{% block pageheader %}
+    <h1>
+        {% if newseed %}
+            <img src="/static/greencheck_large.png" alt="OK!" />
+            Successfully harvested a new seed from plant
+        {% else %}
+            Seed
+        {% endif %}
+    </h1>
+
+    <hr />
+    {% if seed.name %}
+        <h2>{{ seed.name|capfirst }}</h2>
+        {% if seed.wpurl %} <a href="{{ wpurl }}" style="font-style: italic"> {% endif %}
+        <h2>{{ seed.cultivar|capfirst }}</h2>
+        {% if seed.wpurl %} </a> {% endif %}
+    {% else %}
+        {% if seed.wpurl %} <a href="{{ wpurl }}"> {% endif %}
+        <h2>{{ seed.cultivar.species.get_common_name|capfirst }} '{{ seed.cultivar|capfirst }}'</h2>
+        {% if seed.wpurl %} </a> {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+{% block infobox %}
+    <div class="top">
+        {{ seed.cultivar|capfirst }}<br />
+        ({{ seed.cultivar.species|capfirst }})
+    </div>
+
+    <div class="thumbnail">
+        {% if seed.image %}
+            <a href="{{ mediaprefix }}{{ seed.image.sha1sum }}">
+                <img src="{{ mediaprefix }}{{ seed.image.thumbnail.sha1sum }}" alt="photo" />
+            </a>
+        {% else %}
+            No photo available
+        {% endif %}
+    </div>
+
+    <div class="data">
+        <table>
+            {% if seed.vendor %}
+                <tr>
+                    <td>From vendor</td>
+                    <td><a href="{% url 'vendor' seed.vendor.id %}">{{ seed.vendor|capfirst }}</a></td>
+                </tr>
+                {% if seed.harvested %}
+                    <tr>
+                        <td>Vendor harvest</td>
+                        <td class="date">{{ seed.harvested|date:"Y-m" }}</td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                {% if seed.harvested %}
+                    <tr>
+                        <td>Harvested</td>
+                        <td class="date">{{ seed.harvested|date:"Y-m-d" }}</td>
+                    </tr>
+                {% endif %}
+                {% if seed.parent %}
+                    <tr>
+                        <td>From plant</td>
+                        <td><a href="{% url 'plant' seed.parent.id %}">{{ seed.parent }}</a></td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+        </table>
+    </div>
+
+    {% if user.is_authenticated %}
+        {% include "qrbox.html" with target_type="seed" target_id=seed.id %}
+        {% endif %}
+
+{% endblock %}
+
+{% block pagetext %}
+    <p>
+    </p>
+
+    <h2>Photos</h2>
+    {% include "image_list.html" with images=seed.images.all %}
+    {% include "upload_image.html" with imageform=imageform %}
+
+    <h2>Files</h2>
+    {% include "file_list.html" with files=seed.files.all %}
+    {% include "upload_file.html" with fileform=fileform %}
+
+    {% if seed.child_plant.all %}
+        <h2 id="child_plants">Plants planted from seed</h2>
+        {% include "plant_table.html" with plants=seed.child_plant.all %}
+    {% endif %}
+{% endblock %}

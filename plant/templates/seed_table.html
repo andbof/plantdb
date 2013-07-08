@@ -1,0 +1,42 @@
+<table class="listtable">
+    {% for seed in seeds %}
+        {% if forloop.first %}
+            <tr>
+            <th>Thumbnail</th>
+            <th>Cultivar</th>
+            <th>Vendor</th>
+            <th>Harvested</th>
+            <th>Planted</th>
+            </tr>
+        {% endif %}
+        <tr class="{% cycle 'odd' 'even' %}">
+            <td class="thumbnail">
+                {% if seed.image %}
+                    <a href="{{ mediaprefix }}{{ seed.image.sha1sum }}">
+                        <img src="{{ mediaprefix }}{{ seed.image.thumbnail.sha1sum }}" alt="photo" />
+                    </a>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'seed' seed.id %}">{{ seed.cultivar.get_long_name|capfirst }}</a>
+            </td>
+            <td>
+                {% if seed.vendor %}
+                    <a href="{% url 'vendor' seed.vendor.id %}">{{ seed.vendor|capfirst }}</a>
+                {% endif %}
+            </td>
+            <td class="date">
+                {{ seed.harvested|date:"Y-m-d"}}
+            </td>
+            <td>
+                {% if seed.child_plant.all %}
+                    <a href="{% url 'seed' seed.id %}#child_plants">Yes</a>
+                {% else %}
+                    No
+                {% endif %}
+            </td>
+        </tr>
+    {% empty %}
+        Sorry, no seeds.
+    {% endfor %}
+</table>

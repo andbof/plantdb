@@ -1,0 +1,36 @@
+I'm very happy to receive contributions to PlantDB! Don't be afraid to send in
+patches.
+
+For coding style, indent with four spaces and follow the standard Python style
+at http://www.python.org/dev/peps/pep-0008/
+
+For HTML style, look at the existing files. These are general dos and don'ts
+for HTML:
+
+- do indent with four spaces
+- be generous with line breaks
+- do try to keep things within 80 columns
+- don't break single long lines just because of what I just wrote
+- do validate as XHTML 1.1 using http://validator.w3.org/
+
+For JavaScript, I don't really care except try to keep the JavaScript part of
+the project small. The web site must work on terminals that don't support it.
+Flashy extended functionality not required for basic operations is fine if it
+needs to be in JavaScript, though.
+
+Try to keep each commit small and easy to look through and understand.
+
+All code you contribute must be licensed according to the LICENSE file. You
+may, of course, only contribute code that you have written yourself or
+otherwise have rights to pass on as an open source patch as per the terms in
+the LICENSE file.
+
+Your commits must be done using your real name (sorry, no pseudonyms or
+anonymous contributions).
+
+To actually get your code in, either send me a mail at andreas@gazonk.org with
+your patch or create a pull request in github. Either works fine. If you're
+unsure on something, just drop me a mail. Most of the times I'll be happy to
+answer.
+
+Happy hacking!

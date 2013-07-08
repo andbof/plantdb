@@ -1,0 +1,19 @@
+{% extends "base_template.html" %}
+
+{% block pageheader %}
+    <h1>Add new plant</h1>
+    <hr />
+{% endblock %}
+
+{% block infoboxcontainer %}
+{% endblock %}
+
+{% block pagetext %}
+<p>
+    <form action="/addplant" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" />
+    </form>
+</p>
+{% endblock %}

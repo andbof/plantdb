@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="se" xml:lang="se">
+
+    <head>
+        <title>PlantDB - {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" title="Default" href="/static/style.css" type="text/css" />
+        <script type="text/javascript" src="/static/jquery.js"></script>
+        <script type="text/javascript" src="/static/common.js"></script>
+        <meta http-equiv="Content-Script-Type" content="text/javascript" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        {% block additional_head %}
+        {% endblock %}
+    </head>
+
+    <body>
+
+        <div id="page">
+            <div id="pageheader">
+                {% block pageheader %}
+                {% endblock %}
+            </div>
+
+            {% block infoboxcontainer %}
+                <div id="infobox">
+                    {% block infobox %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block pagetext %}
+            {% endblock %}
+        </div>
+    </body>
+
+</html>

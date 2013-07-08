@@ -1,0 +1,29 @@
+# This settings file contains the proper settings on some
+# Django configuration items for PlantDB
+
+MEDIA_URL = '/media/'
+STATIC_ROOT = 'FULL_PATH_TO_THE_PLANTDB_REPO/plant/static/'
+STATIC_URL = '/static/'
+ROOT_URLCONF = 'plantdb.urls'
+
+# This is the minimum; any extra apps you use should
+# also go in here
+INSTALLED_APPS = (
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'django.contrib.admindocs',
+    'plant',
+    'files',
+    'qr',
+)
+
+# Make "/plantdb.fcgi" in URLS go away
+FORCE_SCRIPT_NAME = ''
+
+# Redirect to '/' after successful login
+LOGIN_REDIRECT_URL = '/'

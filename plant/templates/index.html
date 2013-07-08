@@ -1,0 +1,20 @@
+{% extends "base_template.html" %}
+
+{% block pageheader %}
+    <h1>Plant DB</h1>
+    <hr />
+{% endblock %}
+
+{% block infoboxcontainer %}
+{% endblock %}
+
+{% block pagetext %}
+    <h2>Plants</h2>
+    {% include "plant_table.html" %}
+
+    <h2>Seeds</h2>
+    {% include "seed_table.html" %}
+
+    <h2>Vendors</h2>
+    {% include "vendor_table.html" %}
+{% endblock %}

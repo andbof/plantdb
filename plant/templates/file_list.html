@@ -1,0 +1,17 @@
+<table>
+    {% for file in files reversed %}
+        {% if forloop.first %}
+            <tr>
+                <th>File</th><th>Type</th>
+            </tr>
+        {% endif %}
+        <tr>
+            <td style="padding-right: 10em">
+                <a href="{{ mediaprefix }}{{ file.sha1sum }}">{{ file.name }}</a>
+            </td>
+            <td>
+                {{ file.mime }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,33 @@
+{% extends "base_template.html" %}
+
+{% block additional_head %}
+    {% if parent_type %}
+        <meta http-equiv="refresh" content="{{ tag_child_wait }}; url={% url 'make_child' parent_type parent.id tag.tag %}" />
+    {% endif %}
+{% endblock %}
+
+{% block pageheader %}
+    <h1>Tag has no target</h1>
+    <hr />
+{% endblock %}
+
+{% block infoboxcontainer %}
+{% endblock %}
+
+{% block pagetext %}
+    <p>
+        This tag, {{ tag.tag }}, exists but has no target.
+    </p>
+
+    {% if user.is_authenticated %}
+        {% if parent %}
+            <p>
+                You have previously visited a tag redirecting to {{ parent }}
+                within the last {{ tag_delta_max }} seconds. If you stick on
+                this page for {{ tag_child_wait }} seconds, you will create a
+                new child and associate this tag to it.
+            </p>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

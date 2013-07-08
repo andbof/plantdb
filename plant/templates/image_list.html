@@ -1,0 +1,5 @@
+{% for image in images reversed %}
+    <a href="{{ mediaprefix }}{{ image.sha1sum }}">
+        <img src="{{ mediaprefix }}{{ image.thumbnail.sha1sum }}" alt="Photo" />
+    </a>
+{% endfor %}

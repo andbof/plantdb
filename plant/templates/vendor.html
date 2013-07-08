@@ -1,0 +1,53 @@
+{% extends "base_template.html" %}
+
+{% block pageheader %}
+    <h1>{{ vendor.name|capfirst }}</h1>
+    <hr />
+
+    {% if vendor.url %}
+        <a href="{{ vendor.url }}">{{ vendor.url }}</a>
+    {% endif %}
+{% endblock %}
+
+{% block infobox %}
+    <div class="top">
+        {{ vendor.name|capfirst }}
+    </div>
+
+    {% if vendor.image %}
+        <div class="image">
+            <a href="{{ image.url }}">
+                <img src="{{ image.thumbnail.url }}" />
+            </a>
+        </div>
+    {% endif %}
+
+    <div class="data">
+        <table>
+            {% if vendor.url %}
+                <tr>
+                    <td colspan="2">
+                        <a href="{{ url }}" style="font-style: italic">Homepage</a>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if vendor.location %}
+                <tr>
+                    <td>Location</td>
+                    <td>{{ vendor.location }}</td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block pagetext %}
+    <h2>Plants from {{ vendor.name|capfirst }}</h2>
+    {% include "plant_table.html" with plants=vendor_plants %}
+
+    <h2>Seeds from {{ vendor.name|capfirst }}</h2>
+    {% include "seed_table.html" with seeds=vendor_seeds %}
+
+    <h2>Plants from seeds from {{ vendor.name|capfirst }}</h2>
+    {% include "plant_table.html" with plants=vendor_seedplants %}
+{% endblock %}

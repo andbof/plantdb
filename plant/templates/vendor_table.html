@@ -1,0 +1,34 @@
+<table class="listtable">
+    {% for vendor in vendors %}
+        {% if forloop.first %}
+            <tr>
+                <th>Thumbnail</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Homepage</th>
+            </tr>
+        {% endif %}
+        <tr class="{% cycle 'odd' 'even' %}">
+            <td class="thumbnail">
+                {% if vendor.image %}
+                    <a href="{{ mediaprefix }}{{ vendor.image.sha1sum }}">
+                        <img src="{{ mediaprefix }}{{ vendor.image.thumbnail.sha1sum }}" alt="photo" />
+                    </a>
+                {% endif %}
+            </td>
+            <td>
+                <a href="/vendor_{{ vendor.id }}">{{ vendor.name|capfirst }}</a>
+            </td>
+            <td>
+                {{ vendor.location }}
+            </td>
+            <td>
+                {% if vendor.homepage %}
+                    <a href="{{ vendor.homepage }}">Link</a>
+                {% endif %}
+            </td>
+        </tr>
+    {% empty %}
+        Sorry, no vendors.
+    {% endfor %}
+</table>

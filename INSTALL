@@ -1,0 +1,78 @@
+PlantDB
+Copyright (C) 2013 Andreas Bofjäll <andreas@gazonk.org>
+
+WHERE TO GET THE SOFTWARE
+
+  The official repository is at github:
+
+  https://github.com/andbof/plantdb
+
+PREREQUISITES
+
+  You will need:
+
+  - Django
+  - Python
+  - Python Imaging Library (PIL)
+  - python-crypto
+  - python-reportlab
+
+BASIC INSTALLATION
+
+  Unfortunately, django needs to create some files in the repo. Django will
+  refuse if the directory name already exists, and so will git. This means
+  you'll have to clone first, create a project, and then merge them.
+
+  Clone the plantdb git repository somewhere:
+
+  git clone git://github.com/andbof/plantdb plantdb-repo
+
+  Then start a Django project called plantdb:
+
+  django-admin.py startproject plantdb
+
+  And move everything from the cloned repo into the Django project:
+
+  cd plantdb-repo
+  find . -type f -exec mv '{}' ../plantdb/ \;
+  cd ..
+  rmdir plantdb-repo
+
+CONFIGURING
+
+  The subdirectory "local" will be ignored by git. This is preferrably used to
+  store all local stuff, such as the SQL database if you're using sqlite, and
+  other files such as uploaded images.
+
+  Set up an SQL database somewhere. Django supports sqlite, which is probably
+  the easiest and quickest way.
+
+  Edit plantdb/plantdb/settings.py according to your own system. There's a few
+  settings that are plantdb-specific in there, such as what Django apps are
+  part of the plantdb site. They are listed in plantdb/plantdb/settings.sample.
+  Copy those into your settings.py.
+
+  Now initialize the database:
+
+  ./manage.py syncdb
+
+  Unfortunately, you also need to edit qr/functions.py and change "YOUR_DOMAIN"
+  to your domain name. This needs to be fixed somehow in the future.
+
+RUNNING A SERVER
+
+  For testing purposes ONLY, you can use Djangos built-in test server:
+
+  ./manage.py runserver
+
+  For production servers, configure your favourite HTTP daemon. If you're
+  running Django via fastcgi, make sure you include this in your HTTP daemon
+  configuration:
+
+  - It should handle requests to /plantdb.fcgi
+
+  - Urls beginning with /static/ should be rewritten to drop the "static/" prefix
+
+  - All other urls should be prepended with "plantdb.fcgi"
+
+  See the Django documentation for details.

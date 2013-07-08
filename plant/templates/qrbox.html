@@ -1,0 +1,51 @@
+<div class="QR">
+    <script type="text/javascript" src="/static/qrbox.js"></script>
+
+    <table>
+        <tr class="notice {% if not tag_failed_verification %} hidden {% endif %}" id="qr_invalid">
+            <td class="error" colspan="2">
+                <img src="/static/error.png" alt="Error:" />
+                Invalid QR code
+            </td>
+        </tr>
+        <tr class="notice {% if not tag_already_associated %} hidden {% endif %}">
+            <td class="error" colspan="2">
+                <img src="/static/error.png" alt="Error:" />
+                Tag already associated
+            </td>
+        </tr>
+        <tr class="notice {% if not tag_associated_ok %} hidden {% endif %}">
+            <td class="ok" colspan="2">
+                <img src="/static/greencheck.png" alt="OK:" />
+                Tag associated ok!
+            </td>
+        </tr>
+
+        <tr class="notice hidden" id="qr_associating">
+            <td class="working" colspan="2">
+                <img src="/static/wait.gif" alt="Working:" />
+                Associating ...
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Assoc. QR
+            </td>
+            <td>
+                <form action="/associate_qr" method="post" class="qr">
+                    {% csrf_token %}
+                    <div>
+                        <input type="hidden" name="target_type" value="{{ target_type }}" />
+                        <input type="hidden" name="target_id" value="{{ target_id }}" />
+                        <input type="text" name="qr" size="48" style="width: 4em" id="qr" />
+                        <input type="submit" value="Go" class="hideme" />
+                    </div>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><a href="/">Add label to queue</a></td>
+        </tr>
+
+    </table>
+</div>

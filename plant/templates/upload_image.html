@@ -1,0 +1,11 @@
+{% if user.is_authenticated %}
+    <form action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <table>
+                {{ imageform }}
+            </table>
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+{% endif %}
